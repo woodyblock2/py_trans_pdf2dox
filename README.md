@@ -40,14 +40,46 @@ models/
 模型需要手动下载，推荐通过 PaddleOCR 官方仓库的模型列表获取：
 
 1. 打开 PaddleOCR 官方仓库：https://github.com/PaddlePaddle/PaddleOCR
-2. 进入文档中的“模型列表/Model List”页面，选择以下模型并下载：
+2. 在仓库内搜索 `model_list` 或 `models_list`，进入对应的模型列表文档。
+3. 下载以下模型并解压到 `models/` 目录：
    - `det/`：中文文本检测模型（PP-OCR 系列）
    - `rec/`：中文文本识别模型（PP-OCR 系列）
    - `cls/`：方向分类模型（PP-OCR 系列）
    - `table/`：PP-Structure 表格模型
-3. 将下载的压缩包解压到对应目录（`models/det`、`models/rec`、`models/cls`、`models/table`），确保目录内包含 `.pdmodel`、`.pdiparams` 等文件。
 
 > 费用说明：PaddleOCR 官方模型可免费使用（遵循 PaddleOCR 开源协议/许可证），不需要付费。具体许可条款请以 PaddleOCR 官方仓库说明为准。
+
+## 部署阶段（联网下载模型）
+
+部署阶段建议联网执行一次模型下载，完成后即可离线运行：
+
+```bash
+python -m app.download_models --models ./models
+```
+
+该命令会下载默认的 PP-OCR 中文 det/rec/cls 与 PP-Structure table 模型，并解压到：
+
+```
+models/
+  det/
+  rec/
+  cls/
+  table/
+```
+
+如需重新下载并覆盖已有模型，可使用：
+
+```bash
+python -m app.download_models --models ./models --force
+```
+
+## 离线执行阶段（仅本地模型）
+
+离线环境请确保 `models/` 目录已准备完毕（包含 `.pdmodel`、`.pdiparams` 等文件），然后执行：
+
+```bash
+python -m app.main --input ./samples --output ./output --models ./models --debug
+```
 
 ## 运行 Demo
 
