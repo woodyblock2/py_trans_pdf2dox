@@ -47,6 +47,35 @@ models/
    - `cls/`：方向分类模型（PP-OCR 系列）
    - `table/`：PP-Structure 表格模型
 
+PaddleOCR 官网地址（便于确认最新公告与入口）：https://www.paddleocr.com
+
+### 如果下载链接失效，如何替换模型 URL
+
+本项目内置的下载地址在 `app/utils/model_downloader.py` 的 `MODEL_SPECS` 中。如遇 404，请按以下方式替换：
+
+1. 从 PaddleOCR 官方“模型列表/Model List”文档中确认以下关键信息：
+   - **模型类型**：`det / rec / cls / table`
+   - **语言**：中文模型（示例：`ch`）
+   - **版本**：PP-OCR 或 PP-Structure 的具体版本（例如 v4/v5）
+   - **下载链接**：`.tar` 或 `.tar.gz` 直链 URL（BOS/OSS 链接）
+2. 将对应模型的 URL 替换到 `MODEL_SPECS` 中相同 `key` 的 `url` 字段。
+
+例如，`cls` 模型的配置形如：
+
+```python
+ModelSpec(
+    key="cls",
+    url="https://.../ch_xxx_cls_infer.tar",
+    description="方向分类模型",
+)
+```
+
+替换后重新运行：
+
+```bash
+python -m app.download_models --models ./models --force
+```
+
 > 费用说明：PaddleOCR 官方模型可免费使用（遵循 PaddleOCR 开源协议/许可证），不需要付费。具体许可条款请以 PaddleOCR 官方仓库说明为准。
 
 ## 部署阶段（联网下载模型）
