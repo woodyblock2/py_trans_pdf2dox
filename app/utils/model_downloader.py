@@ -28,8 +28,8 @@ MODEL_SPECS = (
     ),
     ModelSpec(
         key="cls",
-        url="https://paddleocr.bj.bcebos.com/PP-OCRv4/chinese/ch_ppocr_mobile_v2.0_cls_infer.tar",
-        description="PP-OCR 方向分类模型",
+        url="https://paddleocr.bj.bcebos.com/PP-OCRv4/chinese/ch_PP-OCRv4_cls_infer.tar",
+        description="PP-OCRv4 方向分类模型",
     ),
     ModelSpec(
         key="table",
