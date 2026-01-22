@@ -2,6 +2,11 @@
 
 ## 1. 项目目标
 
+先了解 PP-OCRv5
+以下两个是官网相关文档信息
+https://www.paddleocr.ai/latest/index.html
+https://www.paddleocr.ai/latest/version3.x/pipeline_usage/OCR.html
+
 使用 Python 实现一个可执行 Demo，将 PDF 文档转换为 DOCX 文档。
 
 PDF 特点：
