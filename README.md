@@ -26,7 +26,7 @@
 ## 环境要求
 
 - Python 3.9+
-- 支持 PaddleOCR 及 PP-OCRv5（建议最新版本）
+- 支持 PaddleOCR 及 PP-OCRv5（建议 **高版本/最新版本**，如 2.8+）
 
 ## 安装依赖
 
@@ -40,6 +40,8 @@ pip install -r requirements.txt
 > `DISABLE_MODEL_SOURCE_CHECK=True`。
 
 > 若使用 GPU，请自行安装对应版本的 `paddlepaddle-gpu`。
+
+> 本 Demo 以高版本 PaddleOCR 为目标；代码中使用 `from paddleocr.ppstructure import PPStructure`，可兼容 2.8+ 的包结构。
 
 ## Online 运行（允许联网下载模型）
 
