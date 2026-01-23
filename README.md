@@ -30,6 +30,54 @@
 
 ## 安装依赖
 
+### 官方推荐安装方式（Windows / Linux / GPU）
+
+> 以下命令来自 PaddleOCR 官方安装建议，GPU 版本请选择与本机 CUDA 匹配的 `paddlepaddle-gpu` 版本。
+
+**Windows (CPU)**
+
+```powershell
+python -m venv .venv
+.\\.venv\\Scripts\\Activate.ps1
+pip install -U pip
+pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install paddleocr>=2.8.0
+```
+
+**Windows (GPU)**
+
+```powershell
+python -m venv .venv
+.\\.venv\\Scripts\\Activate.ps1
+pip install -U pip
+# 选择与 CUDA 版本匹配的 paddlepaddle-gpu
+pip install paddlepaddle-gpu==2.6.1.post120 -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install paddleocr>=2.8.0
+```
+
+**Linux (CPU)**
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -U pip
+pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install paddleocr>=2.8.0
+```
+
+**Linux (GPU)**
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -U pip
+# 选择与 CUDA 版本匹配的 paddlepaddle-gpu
+pip install paddlepaddle-gpu==2.6.1.post120 -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install paddleocr>=2.8.0
+```
+
+### 本项目依赖安装
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate
@@ -42,6 +90,14 @@ pip install -r requirements.txt
 > 若使用 GPU，请自行安装对应版本的 `paddlepaddle-gpu`。
 
 > 本 Demo 以高版本 PaddleOCR 为目标；代码中使用 `from paddleocr.ppstructure import PPStructure`，可兼容 2.8+ 的包结构。
+
+### 环境验证脚本
+
+安装完成后，可运行下面脚本验证 `PPStructure` 是否可用：
+
+```bash
+python verify_paddleocr_env.py
+```
 
 ## Online 运行（允许联网下载模型）
 
