@@ -9,7 +9,7 @@ import fitz
 import numpy as np
 from bs4 import BeautifulSoup
 from docx import Document
-from paddleocr import PPStructure
+from paddleocr.ppstructure import PPStructure
 
 
 def parse_args() -> argparse.Namespace:

@@ -36,6 +36,9 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+> 如果在 Windows/离线环境遇到模型源连通性检查提示，可临时设置环境变量跳过：  
+> `DISABLE_MODEL_SOURCE_CHECK=True`。
+
 > 若使用 GPU，请自行安装对应版本的 `paddlepaddle-gpu`。
 
 ## Online 运行（允许联网下载模型）
