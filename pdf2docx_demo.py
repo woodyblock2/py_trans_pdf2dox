@@ -6,10 +6,10 @@ import os
 from pathlib import Path
 
 import fitz
+import importlib
 import numpy as np
 from bs4 import BeautifulSoup
 from docx import Document
-from paddleocr.ppstructure import PPStructure
 
 
 def parse_args() -> argparse.Namespace:
@@ -75,7 +75,21 @@ def ensure_offline_models(args: argparse.Namespace) -> None:
         )
 
 
-def build_ppstructure(args: argparse.Namespace) -> PPStructure:
+def resolve_ppstructure_class():
+    try:
+        module = importlib.import_module("paddleocr.ppstructure")
+        return module.PPStructure
+    except ModuleNotFoundError:
+        module = importlib.import_module("paddleocr")
+        if not hasattr(module, "PPStructure"):
+            raise ModuleNotFoundError(
+                "PPStructure not found in paddleocr. "
+                "Please install PaddleOCR 2.7+ and ensure ppstructure module is available."
+            )
+        return module.PPStructure
+
+
+def build_ppstructure(args: argparse.Namespace):
     kwargs = {
         "show_log": args.show_log,
         "lang": args.lang,
@@ -95,6 +109,7 @@ def build_ppstructure(args: argparse.Namespace) -> PPStructure:
     if structure_types:
         kwargs["structure_type"] = structure_types
 
+    PPStructure = resolve_ppstructure_class()
     sig = inspect.signature(PPStructure.__init__)
     if "ocr_version" in sig.parameters:
         kwargs["ocr_version"] = "PP-OCRv5"
